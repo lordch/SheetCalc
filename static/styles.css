@@ -1,11 +1,15 @@
-form  { display: table;      }
+form  { display: table;
+        width: 100%;
+}
 p     { display: table-row;  }
-label { display: table-cell;;
+label { display: table-cell;
+        padding: 4px
 }
 input { display: table-cell;
 }
 
 .label { display: table-cell;
+
 }
 .value {
     padding-left: 10px;
