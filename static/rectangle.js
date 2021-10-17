@@ -14,6 +14,14 @@ form.addEventListener('submit', (event) => {
     //large Sheet attributes
     var largeSheetX = parseInt(form.elements.largeX.value);
     var largeSheetY = parseInt(form.elements.largeY.value);
+    if (largeSheetX >= largeSheetY){
+        var largeSheetLongAxis = 'x'
+        var largeSheetShortAxis = 'y'
+    }
+    else{
+        var largeSheetLongAxis = 'y'
+        var largeSheetShortAxis = 'x'
+    }
     var largeSheetFiberDirection = form.elements.largeFiberDirection.value;
     var largeSheetMargin = parseInt(form.elements.largeMargin.value);
     var largeSheetNetX = largeSheetX - 2*largeSheetMargin;
@@ -29,6 +37,14 @@ form.addEventListener('submit', (event) => {
     //small sheet attributes - get
     var smallSheetX = parseInt(form.elements.smallX.value);
     var smallSheetY = parseInt(form.elements.smallY.value);
+    if (smallSheetX >= smallSheetY){
+        var smallSheetLongAxis = 'x'
+        var smallSheetShortAxis = 'y'
+    }
+    else{
+        var smallSheetLongAxis = 'y'
+        var smallSheetShortAxis = 'x'
+    }
     var smallSheetFiberDirection = form.elements.smallFiberDirection.value;
     var smallSheetMargin = parseInt(form.elements.smallMargin.value);
     var smallSheetGrossX = smallSheetX + 2*smallSheetMargin;
@@ -41,11 +57,11 @@ form.addEventListener('submit', (event) => {
 
 
     // align axis
-    // count better alignment if fiber direction is not important
 
     console.log("smallSheetFiberDirection: " +smallSheetFiberDirection);
     console.log("largeSheetFiberDirection: " +largeSheetFiberDirection);
     if (smallSheetFiberDirection == "notImportant"){
+        // count better alignment if fiber direction is not important
         console.log("smallSheetFiberDirection not important");
 
         var xToX = Math.floor(largeSheetNetX/smallSheetGrossX) * Math.floor(largeSheetNetY/smallSheetGrossY);
@@ -58,15 +74,23 @@ form.addEventListener('submit', (event) => {
         }
     }
     else{
+       // align to fiber direction
+
         console.log("Fiber direction important");
-        if (largeSheetFiberDirection != smallSheetFiberDirection){
-        console.log("Axis are not aligned");
-        console.log("Switching axis");
-        [smallSheetX, smallSheetY] = [smallSheetY, smallSheetX];
-    }
+        var longAxisEqual = (smallSheetLongAxis == largeSheetLongAxis)
+        var fiberDirectionEqual = (smallSheetFiberDirection == largeSheetFiberDirection)
+        if (longAxisEqual && !fiberDirectionEqual){
+             [smallSheetX, smallSheetY] = [smallSheetY, smallSheetX];
+        }
+        if (!longAxisEqual && fiberDirectionEqual){
+             [smallSheetX, smallSheetY] = [smallSheetY, smallSheetX];
+        }
+
+        console.log("longAxisEqual: " +longAxisEqual)
+        console.log("fiberDirectionEqual: " +fiberDirectionEqual)
+
     }
 
-    // align to fiber direction
 
 
     console.log("After aligning axis: ")
