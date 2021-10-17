@@ -96,10 +96,10 @@ form.addEventListener('submit', (event) => {
     //Create svg
     var svg   = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     var svgNS = svg.namespaceURI;
-    svg.setAttribute('width', 1100);
-    svg.setAttribute('height', 800);
+    svg.setAttribute('width', "100%");
+    svg.setAttribute('height', "100%");
     svg.setAttribute('id', "rectangle");
-//    svg.setAttribute('viewBox',"-50 -50 100 100")
+    svg.setAttribute('viewBox',"-10 -10 1100 800")
 
     //Draw Large sheet
     const startingMargin = 1

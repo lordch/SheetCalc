@@ -8,7 +8,13 @@ input { display: table-cell;
 .label { display: table-cell;
 }
 .value {
+    padding-left: 10px;
+    padding-right: 5px;
     display: table-cell;
     font-weight: bold;
+
+}
+
+.col{
     padding: 10px;
 }
