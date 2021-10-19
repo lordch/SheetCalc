@@ -84,7 +84,7 @@ form.addEventListener('submit', (event) => {
     svg.setAttribute('viewBox',"-10 -10 1100 800")
 
     //Draw Large sheet
-    const startingMargin = 1
+    const startingMargin = 30
     var largeSheet = document.createElementNS(svgNS,'rect');
     largeSheet.setAttribute('x',startingMargin);
     largeSheet.setAttribute('y',startingMargin);
@@ -94,6 +94,8 @@ form.addEventListener('submit', (event) => {
     largeSheet.setAttribute('stroke', 'black');
     largeSheet.setAttribute('stroke-width', 1)
     svg.appendChild(largeSheet);
+
+
 
     //Draw large sheet net
     var largeSheetNet = document.createElementNS(svgNS,'rect');
@@ -152,6 +154,20 @@ form.addEventListener('submit', (event) => {
         // move along y axis
         y += maxY
     }
+
+
+    //Draw large sheet axis labels
+    var labelX = document.createElementNS(svgNS, 'text');
+    labelX.setAttribute('x', largeSheetX/2 + startingMargin - 20);
+    labelX.setAttribute('y', startingMargin - 10);
+    labelX.innerHTML = largeSheetX;
+    svg.appendChild(labelX);
+
+    var labelY = document.createElementNS(svgNS, 'text');
+    labelY.setAttribute('x', 0 );
+    labelY.setAttribute('y', largeSheetY/2 + startingMargin + 5);
+    labelY.innerHTML = largeSheetY;
+    svg.appendChild(labelY);
 
     // add svg to html
     document.getElementById("column-right").appendChild(svg);
