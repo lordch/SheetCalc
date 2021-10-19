@@ -1,20 +1,22 @@
-form  { display: table;
-        width: 100%;
+label {
+    width: 200px;
+    display:inline-block;
 }
-p     { display: table-row;  }
-label { display: table-cell;
-        padding: 4px
-}
-input { display: table-cell;
+select{
+    width: 200px;
+    display:inline-block;
 }
 
-.label { display: table-cell;
+p {
+    margin-bottom: 0;
+}
+
+.label {;
 
 }
 .value {
     padding-left: 10px;
     padding-right: 5px;
-    display: table-cell;
     font-weight: bold;
 
 }
