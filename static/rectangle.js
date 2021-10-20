@@ -1,6 +1,6 @@
-const form = document.getElementById("form")
-const startingMargin = 50
-
+const form = document.getElementById("form");
+const startingMargin = 50;
+s = new XMLSerializer();
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -98,7 +98,7 @@ form.addEventListener('submit', (event) => {
     largeSheet.setAttribute('y',startingMargin);
     largeSheet.setAttribute('width',largeSheetX);
     largeSheet.setAttribute('height',largeSheetY);
-    largeSheet.setAttribute('fill','Gainsboro');
+    largeSheet.setAttribute('fill','#DCDCDC');
     largeSheet.setAttribute('stroke', 'black');
     largeSheet.setAttribute('stroke-width', 1)
     svg.appendChild(largeSheet);
@@ -220,13 +220,24 @@ form.addEventListener('submit', (event) => {
     svg.appendChild(labelY);
 
     // add svg to html
-    document.getElementById("column-right").appendChild(svg);
+    document.getElementById("svg").appendChild(svg);
 
+    //enable download button
+    document.getElementById('download-button').hidden = false
     // display results
     document.getElementById("numUnits").innerHTML = numUnits;
     document.getElementById("maxX").innerHTML = Math.floor(maxX);
     document.getElementById("maxY").innerHTML = Math.floor(maxY);
     document.getElementById("maxMarginX").innerHTML = Math.floor((maxMarginX+smallSheetMargin));
     document.getElementById("maxMarginY").innerHTML = Math.floor((maxMarginY+smallSheetMargin));
+
+
+    rectString = s.serializeToString(svg)
+    console.log(rectString)
+    fetch("/save", {
+          method: "POST",
+          body: rectString
+        })
+
 });
 
