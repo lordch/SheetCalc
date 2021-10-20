@@ -223,7 +223,9 @@ form.addEventListener('submit', (event) => {
     document.getElementById("svg").appendChild(svg);
 
     //enable download button
-    document.getElementById('download-button').hidden = false
+    document.getElementById('results').hidden = false
+//    document.getElementById('download-button-png').hidden = false
+
     // display results
     document.getElementById("numUnits").innerHTML = numUnits;
     document.getElementById("maxX").innerHTML = Math.floor(maxX);
