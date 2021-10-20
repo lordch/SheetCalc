@@ -18,7 +18,7 @@ def save():
         data = request.data.decode("utf-8")
         with open('static/rectangle.svg', 'w', encoding="utf-8") as file:
             file.write(data)
-        svg2pdf(url='static/rectangle.svg', write_to='rectangle.pdf')
+        svg2pdf(url='static/rectangle.svg', write_to='static/rectangle.pdf')
         svg2png(url='static/rectangle.svg', write_to='static/rectangle.png')
         return redirect(url_for('home'))
     return redirect(url_for('home'))
