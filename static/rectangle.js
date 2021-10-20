@@ -1,5 +1,6 @@
 const form = document.getElementById("form");
 const startingMargin = 50;
+var viewBoxParams = "-10 -10 1300 900";
 s = new XMLSerializer();
 
 form.addEventListener('submit', (event) => {
@@ -84,13 +85,21 @@ form.addEventListener('submit', (event) => {
     var maxMarginX = (maxX - smallSheetGrossX)/2
     var maxMarginY = (maxY - smallSheetGrossY)/2
 
+    // calculate view box parameters
+    var viewBoxX = largeSheetX + 2*startingMargin + 20
+    var viewBoxY = largeSheetY + 2*startingMargin + 20
+    var viewBoxArray = [-10, -10, viewBoxX, viewBoxY]
+    viewBoxParams = viewBoxArray.join(" ");
+    console.log(viewBoxParams)
+
+
     //Create svg
     var svg   = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     var svgNS = svg.namespaceURI;
     svg.setAttribute('width', "100%");
     svg.setAttribute('height', "100%");
     svg.setAttribute('id', "rectangle");
-    svg.setAttribute('viewBox',"-10 -10 1300 900")
+    svg.setAttribute('viewBox', viewBoxParams)
 
     //Draw Large sheet
     var largeSheet = document.createElementNS(svgNS,'rect');
@@ -137,12 +146,13 @@ form.addEventListener('submit', (event) => {
 
             //draw small sheet gross
             var rectGross = document.createElementNS(svgNS,'rect');
-            rectGross.setAttribute('x', x)   ;
+            rectGross.setAttribute('x', x);
             rectGross.setAttribute('y', y+maxMarginY);
             rectGross.setAttribute('width',smallSheetGrossX);
             rectGross.setAttribute('height',smallSheetGrossY);
-            rectGross.setAttribute('fill','#b3e6ff');
-            rectGross.setAttribute('stroke', '#b3e6ff');
+            rectGross.setAttribute('fill','#00aaff');
+            rectGross.setAttribute('fill-opacity', 0.2)
+//            rectGross.setAttribute('stroke', '#b3e6ff');
             svg.appendChild(rectGross);
 
             // draw small sheet net
