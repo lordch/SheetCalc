@@ -1,6 +1,5 @@
 const form = document.getElementById("form");
 const startingMargin = 50;
-var viewBoxParams = "-10 -10 1300 900";
 s = new XMLSerializer();
 
 form.addEventListener('submit', (event) => {
@@ -89,7 +88,7 @@ form.addEventListener('submit', (event) => {
     var viewBoxX = largeSheetX + 2*startingMargin + 20
     var viewBoxY = largeSheetY + 2*startingMargin + 20
     var viewBoxArray = [-10, -10, viewBoxX, viewBoxY]
-    viewBoxParams = viewBoxArray.join(" ");
+    var viewBoxParams = viewBoxArray.join(" ");
     console.log(viewBoxParams)
 
 
@@ -138,7 +137,7 @@ form.addEventListener('submit', (event) => {
             rectMax.setAttribute('y', y);
             rectMax.setAttribute('width',maxX);
             rectMax.setAttribute('height',maxY);
-            rectMax.setAttribute('fill','#cceeff');
+            rectMax.setAttribute('fill','white');
             rectMax.setAttribute('stroke', '#005580');
             svg.appendChild(rectMax);
 
@@ -161,7 +160,7 @@ form.addEventListener('submit', (event) => {
             rect.setAttribute('y', y+smallSheetMargin+maxMarginY);
             rect.setAttribute('width',smallSheetX);
             rect.setAttribute('height',smallSheetY);
-            rect.setAttribute('fill','white');
+            rect.setAttribute('fill','#cceeff');
             rect.setAttribute('stroke', 'black');
             svg.appendChild(rect);
 
@@ -175,41 +174,43 @@ form.addEventListener('submit', (event) => {
 
 
     // Draw fiber direction lines
-    var numFiberLines
-    if (largeSheetFiberDirectionAxis == 'x'){
-        numFiberLines = largeSheetNetY / 47
-        var fiberLinesX = startingMargin + largeSheetMargin
-        var fiberLinesY = startingMargin + largeSheetMargin
-        for (let l = 0; l < numFiberLines; l++){
-            var fiberLine = document.createElementNS(svgNS, 'line')
-            fiberLine.setAttribute('x1', fiberLinesX )
-            fiberLine.setAttribute('x2', fiberLinesX+largeSheetNetX)
-            fiberLine.setAttribute('y1', fiberLinesY)
-            fiberLine.setAttribute('y2', fiberLinesY)
-            fiberLine.setAttribute('stroke', '#005580')
-            fiberLine.setAttribute('stroke-opacity', 0.15)
+    if (smallSheetFiberDirection != "notImportant"){
+        var numFiberLines
+        if (largeSheetFiberDirectionAxis == 'x'){
+            numFiberLines = largeSheetNetY / 47
+            var fiberLinesX = startingMargin + largeSheetMargin
+            var fiberLinesY = startingMargin + largeSheetMargin
+            for (let l = 0; l < numFiberLines; l++){
+                var fiberLine = document.createElementNS(svgNS, 'line')
+                fiberLine.setAttribute('x1', fiberLinesX )
+                fiberLine.setAttribute('x2', fiberLinesX+largeSheetNetX)
+                fiberLine.setAttribute('y1', fiberLinesY)
+                fiberLine.setAttribute('y2', fiberLinesY)
+                fiberLine.setAttribute('stroke', '#005580')
+                fiberLine.setAttribute('stroke-opacity', 0.15)
 
-            svg.appendChild(fiberLine)
-            fiberLinesY += 47
+                svg.appendChild(fiberLine)
+                fiberLinesY += 47
+            }
         }
+        else{
+            numFiberLines = largeSheetNetX / 47
+            var fiberLinesX = startingMargin + largeSheetMargin
+            var fiberLinesY = startingMargin + largeSheetMargin
+            for (let l = 0; l < numFiberLines; l++){
+                var fiberLine = document.createElementNS(svgNS, 'line')
+                fiberLine.setAttribute('x1', fiberLinesX)
+                fiberLine.setAttribute('x2', fiberLinesX)
+                fiberLine.setAttribute('y1', fiberLinesY)
+                fiberLine.setAttribute('y2', fiberLinesY + largeSheetNetY)
+                fiberLine.setAttribute('stroke', '#005580')
+                fiberLine.setAttribute('stroke-opacity', 0.15)
+
+                svg.appendChild(fiberLine)
+                fiberLinesX += 47
+            }
+
     }
-    else{
-        numFiberLines = largeSheetNetX / 47
-        var fiberLinesX = startingMargin + largeSheetMargin
-        var fiberLinesY = startingMargin + largeSheetMargin
-        for (let l = 0; l < numFiberLines; l++){
-            var fiberLine = document.createElementNS(svgNS, 'line')
-            fiberLine.setAttribute('x1', fiberLinesX)
-            fiberLine.setAttribute('x2', fiberLinesX)
-            fiberLine.setAttribute('y1', fiberLinesY)
-            fiberLine.setAttribute('y2', fiberLinesY + largeSheetNetY)
-            fiberLine.setAttribute('stroke', '#005580')
-            fiberLine.setAttribute('stroke-opacity', 0.15)
-
-            svg.appendChild(fiberLine)
-            fiberLinesX += 47
-        }
-
     }
 
 
