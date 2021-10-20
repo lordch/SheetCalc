@@ -208,14 +208,14 @@ form.addEventListener('submit', (event) => {
     var labelX = document.createElementNS(svgNS, 'text');
     labelX.setAttribute('x', largeSheetX/2 + startingMargin - 20);
     labelX.setAttribute('y', startingMargin - 10);
-    labelX.setAttribute('font-size', "1.5rem")
+    labelX.setAttribute('font-size', "1.5em")
     labelX.innerHTML = largeSheetX;
     svg.appendChild(labelX);
 
     var labelY = document.createElementNS(svgNS, 'text');
     labelY.setAttribute('x', 0 );
     labelY.setAttribute('y', largeSheetY/2 + startingMargin + 5);
-    labelY.setAttribute('font-size', "1.5rem")
+    labelY.setAttribute('font-size', "1.5em")
     labelY.innerHTML = largeSheetY;
     svg.appendChild(labelY);
 

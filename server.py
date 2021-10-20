@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 import os
-
+from cairosvg import svg2png, svg2pdf
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
@@ -15,19 +15,18 @@ def home():
 def save():
     print(f"request for download made, method: {request.method}")
     if request.method == "POST":
-        print(request.data)
         data = request.data.decode("utf-8")
-        print(type(data))
         with open('static/rectangle.svg', 'w', encoding="utf-8") as file:
             file.write(data)
-
+        svg2pdf(url='static/rectangle.svg', write_to='rectangle.pdf')
+        svg2png(url='static/rectangle.svg', write_to='static/rectangle.png')
         return redirect(url_for('home'))
     return redirect(url_for('home'))
 
 
 @app.route('/download')
 def download():
-    return send_from_directory('static', "rectangle.svg", as_attachment=True)
+    return send_from_directory('static', "rectangle.pdf", as_attachment=True)
 
 if __name__ == "__main__":
     app.run(debug=True)
