@@ -11,9 +11,7 @@ p {
     margin-bottom: 0;
 }
 
-.label {;
 
-}
 .value {
     padding-left: 10px;
     padding-right: 5px;
@@ -24,3 +22,20 @@ p {
 .col{
     padding: 10px;
 }
+
+
+.cutting-edge-rect{
+    fill:  #d9d9d9;
+    stroke: black;
+}
+
+polygon{
+    fill:  #d9d9d9;
+    stroke: black;
+    fill-opacity: 0.95;
+}
+
+/* rect{
+    stroke: black;
+    fill: coral;
+} */

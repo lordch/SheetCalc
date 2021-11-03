@@ -35,5 +35,10 @@ def download_pdf():
 def download_png():
     return send_from_directory('static', "rectangle.png", as_attachment=True)
 
+@app.route('/cutting_edge')
+def cutting_edge():
+    return render_template('cutting_edge.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True)

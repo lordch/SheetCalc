@@ -246,7 +246,6 @@ form.addEventListener('submit', (event) => {
 
 
     rectString = s.serializeToString(svg)
-    console.log(rectString)
     fetch("/save", {
           method: "POST",
           body: rectString
